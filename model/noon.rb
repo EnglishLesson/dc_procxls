@@ -1,0 +1,3 @@
+class Noon < Entity
+  
+end
