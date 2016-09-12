@@ -2,9 +2,23 @@ require 'find'
 require 'rubyXL'
 require 'colorize'
 
-require_relative 'model/entity'
-require_relative 'model/noon'
 require_relative 'sheet/mdsheet'
+
+require_relative 'model/entity'
+
+require_relative 'controller/noon'
+require_relative 'controller/question'
+require_relative 'controller/answer'
+require_relative 'controller/questionnaire'
+require_relative 'controller/keyword'
+require_relative 'controller/punctuation'
+require_relative 'controller/translation'
+require_relative 'controller/verb'
+require_relative 'controller/gender'
+require_relative 'controller/rule'
+require_relative 'controller/arthicle'
+require_relative 'controller/rulesv'
+require_relative 'controller/rulesn'
 
 fileXls = nil
 
@@ -20,18 +34,19 @@ sheets = Array['noon', 'question', 'answer', 'questionnaire', 'keyword', 'punctu
    'verb', 'gender', 'rule', 'arthicle', 'rulesv', 'rulesn'
 ]
 
-md = Array[MdSheet::NoonSheet, MdSheet::QuestionSheet, MdSheet::AnswerSheet,MdSheet::QuestionnaireSheet,
+mdSheet = Array[MdSheet::NoonSheet, MdSheet::QuestionSheet, MdSheet::AnswerSheet,MdSheet::QuestionnaireSheet,
   MdSheet::KeywordSheet, MdSheet::PunctuactionSheet, MdSheet::TranslationSheet, MdSheet::VerbSheet, MdSheet::GenderSheet,
-  MdSheet::RuleSheet, MdSheet::ArticleSheet, MdSheet::RulesVSheet, MdSheet::RulesNSheet
+  MdSheet::RuleSheet, MdSheet::ArthicleSheet, MdSheet::RulesVSheet, MdSheet::RulesNSheet
+]
+
+ctrls = Array[NoonCtrl.new, QuestionCtrl.new, AnswerCtrl.new, QuestionnaireCtrl.new, KeywordCtrl.new, PunctuactionCtrl.new,
+  TranslationCtrl.new, VerbCtrl.new, GenderCtrl.new, RuleCtrl.new, ArthicleCtrl.new, RulesVCtrl.new, RulesNCtrl.new
 ]
 
 #validate the structure
 begin
-  for idx in md.rindex(md.first)..md.rindex(md.last)
-    for row in workbook[sheets[idx]]
-      next if row.index_in_collection == 0
-      puts row[md[idx]::IDX_CODE].value
-    end
+  for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
+    ctrls[idx].extractData(workbook[sheets[idx]])
   end
 rescue
   puts 'Structure Invalid - sheet\'s name\'s incompatible with the template, please notify the administrator'.red

@@ -1,0 +1,3 @@
+class RuleModel < Entity
+
+end

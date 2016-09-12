@@ -1,0 +1,3 @@
+class GenderModel < Entity
+  
+end

@@ -1,0 +1,3 @@
+class KeywordModel < Entity
+
+end

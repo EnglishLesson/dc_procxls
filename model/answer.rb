@@ -1,0 +1,3 @@
+class AnswerModel < Entity
+
+end

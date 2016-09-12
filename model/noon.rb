@@ -1,3 +1,3 @@
-class Noon < Entity
-  
+class NoonModel < Entity
+
 end
