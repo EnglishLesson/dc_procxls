@@ -20,34 +20,39 @@ require_relative 'controller/arthicle'
 require_relative 'controller/rulesv'
 require_relative 'controller/rulesn'
 
-fileXls = nil
+require_relative 'db/mddb'
 
-Find.find("/") do |file|
-  next if !(/template.xls[x]$/.match(file.to_s.downcase))
-  fileXls = file
-  break
-end
+DATABASE::ConnectDB()
 
-workbook = RubyXL::Parser.parse(fileXls)
+#fileXls = nil
 
-sheets = Array['noon', 'question', 'answer', 'questionnaire', 'keyword', 'punctuation', 'translation',
-   'verb', 'gender', 'rule', 'arthicle', 'rulesv', 'rulesn'
-]
+#Find.find("/") do |file|
+#  next if !(/template.xls[x]$/.match(file.to_s.downcase))
+#  fileXls = file
+#  break
+#end
 
-mdSheet = Array[MdSheet::NoonSheet, MdSheet::QuestionSheet, MdSheet::AnswerSheet,MdSheet::QuestionnaireSheet,
-  MdSheet::KeywordSheet, MdSheet::PunctuactionSheet, MdSheet::TranslationSheet, MdSheet::VerbSheet, MdSheet::GenderSheet,
-  MdSheet::RuleSheet, MdSheet::ArthicleSheet, MdSheet::RulesVSheet, MdSheet::RulesNSheet
-]
+#workbook = RubyXL::Parser.parse(fileXls)
 
-ctrls = Array[NoonCtrl.new, QuestionCtrl.new, AnswerCtrl.new, QuestionnaireCtrl.new, KeywordCtrl.new, PunctuactionCtrl.new,
-  TranslationCtrl.new, VerbCtrl.new, GenderCtrl.new, RuleCtrl.new, ArthicleCtrl.new, RulesVCtrl.new, RulesNCtrl.new
-]
+#sheets = Array['noon', 'question', 'answer', 'questionnaire', 'keyword', 'punctuation', 'translation',
+#   'verb', 'gender', 'rule', 'arthicle', 'rulesv', 'rulesn'
+#]
+
+#mdSheet = Array[MdSheet::NoonSheet, MdSheet::QuestionSheet, MdSheet::AnswerSheet,MdSheet::QuestionnaireSheet,
+#  MdSheet::KeywordSheet, MdSheet::PunctuactionSheet, MdSheet::TranslationSheet, MdSheet::VerbSheet, MdSheet::GenderSheet,
+#  MdSheet::RuleSheet, MdSheet::ArthicleSheet, MdSheet::RulesVSheet, MdSheet::RulesNSheet
+#]
+
+#ctrls = Array[NoonCtrl.new, QuestionCtrl.new, AnswerCtrl.new, QuestionnaireCtrl.new, KeywordCtrl.new, PunctuactionCtrl.new,
+#  TranslationCtrl.new, VerbCtrl.new, GenderCtrl.new, RuleCtrl.new, ArthicleCtrl.new, RulesVCtrl.new, RulesNCtrl.new
+#]
 
 #validate the structure
-begin
-  for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
-    ctrls[idx].extractData(workbook[sheets[idx]])
-  end
-rescue
-  puts 'Structure Invalid - sheet\'s name\'s incompatible with the template, please notify the administrator'.red
-end
+#begin
+#  for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
+###  currentInstance.extractData(workbook[currentSheet::NAME])
+  #  #ctrls[idx].extractData(workbook[currentSheet::NAME])
+  #end
+#rescue
+#  puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red
+#end
