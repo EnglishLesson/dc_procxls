@@ -44,11 +44,13 @@ module MdSheet
   end
 
   class GenderSheet < SheetDefault
+    IDX_ALS = 2
     NAME = 'Gender'
     INSTANCE = GenderCtrl.new
   end
 
   class RuleSheet < SheetDefault
+    IDX_NAME = 2
     NAME = 'Rule'
     INSTANCE = RuleCtrl.new
   end

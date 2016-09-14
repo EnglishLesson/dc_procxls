@@ -1,0 +1,3 @@
+class wordModel < Entity
+
+end

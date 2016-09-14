@@ -11,6 +11,7 @@ class GenderCtrl
       next if row.index_in_collection == 0
       genderModel.setCode(row[MdSheet::GenderSheet::IDX_CODE])
       genderModel.setValue(row[MdSheet::GenderSheet::IDX_VALUE])
+      genderModel.setAls(row[MdSheet::GenderSheet::IDX_ALS])
       @genders.push(genderModel)
     end
   end
