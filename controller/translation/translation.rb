@@ -1,4 +1,4 @@
-require_relative '../model/translation'
+require_relative '../../model/translation/translation'
 
 class TranslationCtrl
   def initialize

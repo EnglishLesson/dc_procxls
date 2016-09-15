@@ -1,0 +1,3 @@
+class PrepositionModel < Entity
+
+end

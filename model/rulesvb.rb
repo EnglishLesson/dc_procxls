@@ -1,4 +1,4 @@
-class RulesNModel < Entity
+class RulesVBModel < Entity
   def getCodeRule
     @codeRule
   end
@@ -7,11 +7,11 @@ class RulesNModel < Entity
     @codeRule = codeRule
   end
 
-  def getCodeNoon
-    @codeNoon
+  def getCodeVerb
+    @codeVerb
   end
 
-  def setCodeNoon(codeNoon)
-    @codeNoon = codeNoon
+  def setCodeVerb(codeVerb)
+    @codeVerb = codeVerb
   end
 end

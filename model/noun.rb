@@ -1,0 +1,3 @@
+class NounModel < Entity
+
+end

@@ -12,6 +12,7 @@ class QuestionnaireCtrl
       questionnaireModel.setCode(row[MdSheet::QuestionnaireSheet::IDX_CODE])
       questionnaireModel.setCodeQuestion(row[MdSheet::QuestionnaireSheet::IDX_QUESTION])
       questionnaireModel.setCodeAnswer(row[MdSheet::QuestionnaireSheet::IDX_ANSWER])
+      questionnaireModel.setRAnswer(row[MdSheet::QuestionnaireSheet::ID_RANSWER])
       @questionnaires.push(questionnaireModel)
     end
   end

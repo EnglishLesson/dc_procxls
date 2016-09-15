@@ -1,4 +1,4 @@
-class RulesWDModel < Entity
+class RulesNNModel < Entity
   def getCodeRule
     @codeRule
   end
@@ -7,11 +7,11 @@ class RulesWDModel < Entity
     @codeRule = codeRule
   end
 
-  def getCodeWord
-    @codeWord
+  def getCodeNoun
+    @codeNoun
   end
 
-  def setCodeWord(codeWord)
-    @codeWord = codeWord
+  def setCodeNoun(codeNoun)
+    @codeNoun = codeNoun
   end
 end
