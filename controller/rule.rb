@@ -7,18 +7,20 @@ class RuleCtrl
 
   def extractData(sheets)
     for row in sheets
-      punctuationModel = PunctuactionModel.new
       next if row.index_in_collection == 0
-      punctuationModel.setCode(row[MdSheet::PunctuactionSheet::IDX_CODE])
-      punctuationModel.setValue(row[MdSheet::PunctuactionSheet::IDX_VALUE])
-      @rules.push(punctuationModel)
+      ruleModel = RuleModel.new
+      ruleModel.setCode(row[MdSheet::RuleSheet::IDX_CODE])
+      ruleModel.setValue(row[MdSheet::RuleSheet::IDX_VALUE])
+      ruleModel.setName(row[MdSheet::RuleSheet::IDX_NAME])
+      @rules.push(ruleModel)
     end
   end
 
   def showDataXls()
-    for punctuation in @rules
-      puts punctuation.getCode().value
-      puts punctuation.getValue().value
+    for rule in @rules
+      puts rule.getCode().value
+      puts rule.getValue().value
+      puts rule.getName().value
     end
   end
 end

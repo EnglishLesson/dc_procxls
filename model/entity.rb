@@ -1,4 +1,12 @@
 class Entity
+  def getId
+    @id
+  end
+
+  def setId(id)
+    @id = id
+  end
+
   def getCode
     @code
   end

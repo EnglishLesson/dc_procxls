@@ -1,5 +1,6 @@
 require 'pg'
 
+<<<<<<< HEAD
 class DataBase
   def connectDB
     begin
@@ -10,5 +11,11 @@ class DataBase
     ensure
       connection.close if connection
     end
+=======
+module DATABASE
+  def ConnectDB
+      PG::Connection.new('192.168.43.10', 5432, nil, nil, 'impdb', 'imprt', 'AvdWe&sd#')
+      puts 'Banco connectado'
+>>>>>>> 1e8af8af510321e90fe14559f85d2c395ee57841
   end
 end
