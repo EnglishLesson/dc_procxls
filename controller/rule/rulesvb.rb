@@ -1,4 +1,4 @@
-require_relative '../model/rulesvb'
+require_relative '../../model/rule/rulesvb'
 
 class RulesVBCtrl
   def initialize

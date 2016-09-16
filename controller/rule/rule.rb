@@ -1,4 +1,4 @@
-require_relative '../model/rule'
+require_relative '../../model/rule/rule'
 
 class RuleCtrl
   def initialize

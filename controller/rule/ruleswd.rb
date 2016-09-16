@@ -1,4 +1,4 @@
-require_relative '../model/ruleswd'
+require_relative '../../model/rule/ruleswd'
 
 class RulesWDCtrl
   def initialize

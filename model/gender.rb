@@ -3,7 +3,7 @@ class GenderModel < Entity
       @als
     end
 
-    def set als(als)
+    def setals(als)
       @als = als
     end
 end

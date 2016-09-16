@@ -1,4 +1,4 @@
-require_relative '../model/ruleskw'
+require_relative '../../model/rule/ruleskw'
 
 class RulesKWCtrl
   def initialize

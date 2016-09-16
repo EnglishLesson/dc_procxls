@@ -1,24 +1,31 @@
-require_relative '../controller/answer'
-require_relative '../controller/punctuation'
-require_relative '../controller/question'
-require_relative '../controller/questionnaire'
-require_relative '../controller/rule'
-require_relative '../controller/rulesn'
-require_relative '../controller/rulesv'
-require_relative '../controller/translation/translation'
-require_relative '../controller/verb'
+require_relative '../controller/rules/rule'
 require_relative '../controller/gender'
-require_relative '../controller/arthicle'
+require_relative '../controller/translation/translation'
+require_relative '../controller/exception'
 require_relative '../controller/word'
-require_relative '../controller/ruleswd'
-require_relative '../controller/rulesvb'
+require_relative '../controller/rules/ruleswd'
+require_relative '../controller/verb'
+require_relative '../controller/rules/rulesvb'
 require_relative '../controller/noun'
-require_relative '../controller/rulesnn'
+require_relative '../controller/rules/rulesnn'
 require_relative '../controller/preposition'
 require_relative '../controller/tkeyword'
 require_relative '../controller/keyword'
+require_relative '../controller/rules/ruleskw'
 require_relative '../controller/number'
 require_relative '../controller/adjective'
+require_relative '../controller/pronoun'
+require_relative '../controller/answer'
+require_relative '../controller/question'
+require_relative '../controller/questionnaire'
+require_relative '../controller/translation/translwd'
+require_relative '../controller/translation/translvb'
+require_relative '../controller/translation/translkw'
+require_relative '../controller/translation/translnn'
+require_relative '../controller/translation/translpp'
+require_relative '../controller/translation/translnb'
+require_relative '../controller/translation/transladj'
+require_relative '../controller/translation/translpron'
 
 module MdSheet
   class SheetDefault
@@ -31,9 +38,16 @@ module MdSheet
     IDX_TRANSLATION = 1
   end
 
-  class PunctuactionSheet < SheetDefault
-    NAME = 'Punctuaction'
-    INSTANCE = PunctuactionCtrl.new
+  class RulesDefault
+    IDX_CODE = 0
+    IDX_CODE_RULE = 1
+    IDX_CODE_EXCEPTION = 2
+  end
+
+  class RuleSheet < SheetDefault
+    IDX_NAME = 2
+    NAME = 'Rule'
+    INSTANCE = RuleCtrl.new
   end
 
   class GenderSheet < SheetDefault
@@ -42,22 +56,37 @@ module MdSheet
     INSTANCE = GenderCtrl.new
   end
 
+  class TranslationSheet < SheetDefault
+    IDX_CODE_GENDER = 2
+    NAME       = 'Translation'
+    INSTANCE = TranslationCtrl.new
+  end
+
+  class ExceptionSheet < SheetDefault
+    IDX_NAME = 2
+    NAME = 'Exception'
+    INSTANCE = ExceptionCtrl.new
+  end
+
   class WordSheet < SheetDefault
     NAME = 'Word'
     INSTANCE = WordCtrl.new
   end
 
-  class RuleSheet < SheetDefault
-    IDX_NAME = 2
-    IDX_RLL  = 3
-    NAME = 'Rule'
-    INSTANCE = RuleCtrl.new
-  end
-
-  class RulesWDSheet < SheetDefault
-    IDX_CODE_RULE = 2
+  class RulesWDSheet < RulesDefault
     IDX_CODE_WORD = 3
     NAME = 'RulesWD'
+  end
+
+  class VerbSheet < SheetDefault
+    NAME            = 'Verb'
+    INSTANCE = VerbCtrl.new
+  end
+
+  class RulesVBSheet < RulesDefault
+    IDX_CODE_VERB  = 3
+    NAME      = 'RulesVB'
+    INSTANCE =  RulesVBCtrl.new
   end
 
   class NounSheet < SheetDefault
@@ -65,8 +94,7 @@ module MdSheet
     INSTANCE = NounCtrl.new
   end
 
-  class RulesNNSheet < SheetDefault
-    IDX_CODE_RULE = 2
+  class RulesNNSheet < RulesDefault
     IDX_CODE_NOUN = 3
     NAME          = 'RulesNoun'
     INSTANCE      = RulesNNCtrl.new
@@ -89,8 +117,7 @@ module MdSheet
     INSTANCE = KeywordCtrl.new
   end
 
-  class RulesKWSheet < SheetDefault
-    IDX_CODE_RULE = 2
+  class RulesKWSheet < RulesDefault
     IDX_CODE_KEYWORD = 3
     NAME = 'RulesKW'
     INSTANCE = RulesKWCtrl.new
@@ -175,36 +202,5 @@ module MdSheet
     IDX_CODE_PRONOUN = 2
     NAME = 'TranslPron'
     INSTANCE = TranslPronCtrl.new
-  end
-
-
-
-
-
-
-  class TranslationSheet < SheetDefault
-      IDX_GENDER = 2
-      NAME       = 'Translation'
-      INSTANCE = TranslationCtrl.new
-  end
-
-  class VerbSheet < SheetDefault
-    NAME            = 'Verb'
-    INSTANCE = VerbCtrl.new
-  end
-
-  class RulesVBSheet < SheetDefault
-    IDX_RULE  = 1
-    IDX_VERB  = 2
-    NAME      = 'RulesVB'
-    INSTANCE =  RulesVBCtrl.new
-  end
-
-  class RulesNSheet
-    IDX_CODE  = 0
-    IDX_RULE  = 1
-    IDX_NOON  = 2
-    NAME      = 'RulesN'
-    INSTANCE =RulesNCtrl.new
   end
 end
