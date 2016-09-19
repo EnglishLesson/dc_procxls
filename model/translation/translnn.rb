@@ -1,3 +1,5 @@
+require_relative 'transldefault'
+
 class TranslNNModel < TranslDefault
   def getCodeNoun
     @codeNoun

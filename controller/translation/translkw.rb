@@ -10,7 +10,7 @@ class TranslKWCtrl
       translKWModel = TranslKWModel.new
       next if row.index_in_collection == 0
       translKWModel.setCode(row[MdSheet::TranslKWSheet::IDX_CODE])
-      translKWModel.setTranslation(row[MdSheet::TranslKWSheet::IDX_CODE_TRANSLATION])
+      translKWModel.setCodeTranslation(row[MdSheet::TranslKWSheet::IDX_CODE_TRANSLATION])
       translKWModel.setCodeKeyword(row[MdSheet::TranslKWSheet::IDX_CODE_KEYWORD])
       @translkws.push(translKWModel)
     end

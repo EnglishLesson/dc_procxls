@@ -10,8 +10,8 @@ class TranslNNCtrl
       translNNModel = TranslNNModel.new
       next if row.index_in_collection == 0
       translNNModel.setCode(row[MdSheet::TranslNNSheet::IDX_CODE])
-      translNNModel.setTranslation(row[MdSheet::TranslNNSheet::IDX_CODE_TRANSLATION])
-      translNNModel.setCodeKeyword(row[MdSheet::TranslNNSheet::IDX_CODE_NOUN])
+      translNNModel.setCodeTranslation(row[MdSheet::TranslNNSheet::IDX_CODE_TRANSLATION])
+      translNNModel.setCodeNoun(row[MdSheet::TranslNNSheet::IDX_CODE_NOUN])
       @translnns.push(translNNModel)
     end
   end

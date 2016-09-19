@@ -1,9 +1,5 @@
-class GenderModel < Entity
-    def getAls
-      @als
-    end
+require_relative 'entity'
 
-    def setals(als)
-      @als = als
-    end
+class GenderModel < Entity
+  
 end

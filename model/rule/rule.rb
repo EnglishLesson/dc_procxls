@@ -1,3 +1,5 @@
+require_relative '../entity'
+
 class RuleModel < Entity
   def getName
     @name

@@ -1,4 +1,6 @@
-class RulesWDModel < Entity
+require_relative 'rulesdefault'
+
+class RulesWDModel < RulesDefault
   def getCodeWord
     @codeWord
   end

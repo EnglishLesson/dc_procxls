@@ -4,55 +4,38 @@ require 'colorize'
 
 require_relative 'sheet/mdsheet'
 
-require_relative 'model/entity'
+#MdDb::RunDB::INSTANCE.persistData('el."codest"', "(tname, code)", ['{rules27}', '/007'])
+#MdDB::RunDB::INSTANCE.closeConnection
 
-require_relative 'controller/noon'
-require_relative 'controller/question'
-require_relative 'controller/answer'
-require_relative 'controller/questionnaire'
-require_relative 'controller/keyword'
-require_relative 'controller/punctuation'
-require_relative 'controller/translation'
-require_relative 'controller/verb'
-require_relative 'controller/gender'
-require_relative 'controller/rule'
-require_relative 'controller/arthicle'
-require_relative 'controller/rulesv'
-require_relative 'controller/rulesn'
+fileXls = nil
 
-require_relative 'db/mddb'
+Find.find("/") do |file|
+  next if !(/template.xls[x]$/.match(file.to_s.downcase))
+  fileXls = file
+  break
+end
 
-DATABASE::ConnectDB()
+workbook = RubyXL::Parser.parse(fileXls)
 
-#fileXls = nil
+mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::GenderSheet, MdSheet::TranslationSheet, MdSheet::ExceptionSheet,
+  MdSheet::WordSheet, MdSheet::RulesWDSheet, MdSheet::VerbSheet, MdSheet::RulesVBSheet, MdSheet::NounSheet, MdSheet::RulesNNSheet,
+  MdSheet::PrepositionSheet, MdSheet::TKeywordSheet, MdSheet::KeywordSheet, MdSheet::RulesKWSheet, MdSheet::NumberSheet,
+  MdSheet::AdjectiveSheet, MdSheet::PronounSheet, MdSheet::AnswerSheet, MdSheet::QuestionSheet, MdSheet::QuestionnaireSheet,
+  MdSheet::TranslWDSheet, MdSheet::TranslVBSheet, MdSheet::TranslKWSheet, MdSheet::TranslNNSheet, MdSheet::TranslPPSheet,
+  MdSheet::TranslNBSheet, MdSheet::TranslADJSheet, MdSheet::TranslPronSheet
+]
 
-#Find.find("/") do |file|
-#  next if !(/template.xls[x]$/.match(file.to_s.downcase))
-#  fileXls = file
-#  break
-#end
 
-#workbook = RubyXL::Parser.parse(fileXls)
-
-#sheets = Array['noon', 'question', 'answer', 'questionnaire', 'keyword', 'punctuation', 'translation',
-#   'verb', 'gender', 'rule', 'arthicle', 'rulesv', 'rulesn'
-#]
-
-#mdSheet = Array[MdSheet::NoonSheet, MdSheet::QuestionSheet, MdSheet::AnswerSheet,MdSheet::QuestionnaireSheet,
-#  MdSheet::KeywordSheet, MdSheet::PunctuactionSheet, MdSheet::TranslationSheet, MdSheet::VerbSheet, MdSheet::GenderSheet,
-#  MdSheet::RuleSheet, MdSheet::ArthicleSheet, MdSheet::RulesVSheet, MdSheet::RulesNSheet
-#]
-
-#ctrls = Array[NoonCtrl.new, QuestionCtrl.new, AnswerCtrl.new, QuestionnaireCtrl.new, KeywordCtrl.new, PunctuactionCtrl.new,
-#  TranslationCtrl.new, VerbCtrl.new, GenderCtrl.new, RuleCtrl.new, ArthicleCtrl.new, RulesVCtrl.new, RulesNCtrl.new
-#]
 
 #validate the structure
 #begin
-#  for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
-###  currentInstance.extractData(workbook[currentSheet::NAME])
-  #  #ctrls[idx].extractData(workbook[currentSheet::NAME])
-  #end
+  for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
+    currentSheet = mdSheet[idx]
+    currentInstance = currentSheet::INSTANCE
+    currentInstance.extractData(workbook[currentSheet::NAME])
+    currentInstance.persistData()
+    break
+  end
 #rescue
 #  puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red
 #end

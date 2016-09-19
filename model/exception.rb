@@ -1,3 +1,5 @@
+require_relative 'entity'
+
 class ExceptionModel < Entity
     def getName
       @name

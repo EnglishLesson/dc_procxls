@@ -1,3 +1,5 @@
+require_relative 'rulesdefault'
+
 class RulesNNModel < RulesDefault
   def getCodeNoun
     @codeNoun

@@ -1,3 +1,5 @@
+require_relative 'transldefault'
+
 class TranslPronModel < TranslDefault
   def getCodePronoun
     @codePronoun

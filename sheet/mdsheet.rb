@@ -1,17 +1,18 @@
-require_relative '../controller/rules/rule'
+require_relative '../controller/codest'
+require_relative '../controller/rule/rule'
 require_relative '../controller/gender'
 require_relative '../controller/translation/translation'
 require_relative '../controller/exception'
 require_relative '../controller/word'
-require_relative '../controller/rules/ruleswd'
+require_relative '../controller/rule/ruleswd'
 require_relative '../controller/verb'
-require_relative '../controller/rules/rulesvb'
+require_relative '../controller/rule/rulesvb'
 require_relative '../controller/noun'
-require_relative '../controller/rules/rulesnn'
+require_relative '../controller/rule/rulesnn'
 require_relative '../controller/preposition'
 require_relative '../controller/tkeyword'
 require_relative '../controller/keyword'
-require_relative '../controller/rules/ruleskw'
+require_relative '../controller/rule/ruleskw'
 require_relative '../controller/number'
 require_relative '../controller/adjective'
 require_relative '../controller/pronoun'
@@ -35,7 +36,7 @@ module MdSheet
 
   class TranslDefault
     IDX_CODE = 0
-    IDX_TRANSLATION = 1
+    IDX_CODE_TRANSLATION = 1
   end
 
   class RulesDefault
@@ -44,107 +45,115 @@ module MdSheet
     IDX_CODE_EXCEPTION = 2
   end
 
+  class CodesTSheet
+    IDX_TNAME = 0
+    IDX_CODE = 1
+    NAME = 'codest'
+    INSTANCE = CodesTCtrl.new
+  end
+
   class RuleSheet < SheetDefault
     IDX_NAME = 2
-    NAME = 'Rule'
+    NAME = 'rule'
     INSTANCE = RuleCtrl.new
   end
 
   class GenderSheet < SheetDefault
     IDX_ALS = 2
-    NAME = 'Gender'
+    NAME = 'gender'
     INSTANCE = GenderCtrl.new
   end
 
   class TranslationSheet < SheetDefault
     IDX_CODE_GENDER = 2
-    NAME       = 'Translation'
+    NAME       = 'translation'
     INSTANCE = TranslationCtrl.new
   end
 
   class ExceptionSheet < SheetDefault
     IDX_NAME = 2
-    NAME = 'Exception'
+    NAME = 'exception'
     INSTANCE = ExceptionCtrl.new
   end
 
   class WordSheet < SheetDefault
-    NAME = 'Word'
+    NAME = 'word'
     INSTANCE = WordCtrl.new
   end
 
   class RulesWDSheet < RulesDefault
     IDX_CODE_WORD = 3
-    NAME = 'RulesWD'
+    NAME = 'ruleswd'
+    INSTANCE = RulesWDCtrl.new
   end
 
   class VerbSheet < SheetDefault
-    NAME            = 'Verb'
+    NAME            = 'verb'
     INSTANCE = VerbCtrl.new
   end
 
   class RulesVBSheet < RulesDefault
     IDX_CODE_VERB  = 3
-    NAME      = 'RulesVB'
+    NAME      = 'rulesvb'
     INSTANCE =  RulesVBCtrl.new
   end
 
   class NounSheet < SheetDefault
-    NAME = 'Noun'
+    NAME = 'noun'
     INSTANCE = NounCtrl.new
   end
 
   class RulesNNSheet < RulesDefault
     IDX_CODE_NOUN = 3
-    NAME          = 'RulesNoun'
+    NAME          = 'rulesnn'
     INSTANCE      = RulesNNCtrl.new
   end
 
   class PrepositionSheet < SheetDefault
-    NAME = 'Preposition'
+    NAME = 'preposition'
     INSTANCE = PrepositionCtrl.new
   end
 
   class TKeywordSheet < SheetDefault
     IDX_NAME = 2
-    NAME = 'TKeyword'
+    NAME = 'tkeyword'
     INSTANCE = TKeywordCtrl.new
   end
 
   class KeywordSheet < SheetDefault
     IDX_CODE_TKEYWORD = 2
-    NAME = 'Keyword'
+    NAME = 'keyword'
     INSTANCE = KeywordCtrl.new
   end
 
   class RulesKWSheet < RulesDefault
     IDX_CODE_KEYWORD = 3
-    NAME = 'RulesKW'
+    NAME = 'ruleskw'
     INSTANCE = RulesKWCtrl.new
   end
 
   class NumberSheet < SheetDefault
-    NAME = 'Number'
+    NAME = 'number'
     INSTANCE = NumberCtrl.new
   end
 
   class AdjectiveSheet < SheetDefault
-    NAME = 'Adjective'
+    NAME = 'adjective'
     INSTANCE = AdjectiveCtrl.new
   end
 
   class PronounSheet < SheetDefault
-    NAME = 'Pronoun'
+    NAME = 'pronoun'
     INSTANCE = PronounCtrl.new
   end
 
   class AnswerSheet < SheetDefault
-    NAME = 'Answer'
+    NAME = 'answer'
     INSTANCE = AnswerCtrl.new
   end
 
   class QuestionSheet < SheetDefault
-    NAME = 'Question'
+    NAME = 'question'
     INSTANCE = QuestionCtrl.new
   end
 
@@ -152,55 +161,55 @@ module MdSheet
     IDX_CODE_QUESTION = 1
     IDX_CODE_ANSWER   = 2
     IDX_RANSWER  = 3
-    NAME         = 'Questionnaire'
+    NAME = 'questionnaire'
     INSTANCE = QuestionnaireCtrl.new
   end
 
   class TranslWDSheet < TranslDefault
     IDX_CODE_WORD = 2
-    NAME = 'TranslWD'
+    NAME = 'translwd'
     INSTANCE = TranslWDCtrl.new
   end
 
   class TranslVBSheet < TranslDefault
     IDX_CODE_VERB = 2
-    NAME = 'TranslVB'
+    NAME = 'translvb'
     INSTANCE = TranslVBCtrl.new
   end
 
   class TranslKWSheet < TranslDefault
     IDX_CODE_KEYWORD = 2
-    NAME = 'TranslKW'
+    NAME = 'translkw'
     INSTANCE = TranslKWCtrl.new
   end
 
   class TranslNNSheet < TranslDefault
     IDX_CODE_NOUN = 2
-    NAME = 'TranslNN'
+    NAME = 'translnn'
     INSTANCE = TranslNNCtrl.new
   end
 
   class TranslPPSheet < TranslDefault
     IDX_CODE_PREPOSITION = 2
-    NAME = 'TranslPP'
+    NAME = 'translpp'
     INSTANCE = TranslPPCtrl.new
   end
 
   class TranslNBSheet < TranslDefault
     IDX_CODE_NUMBER = 2
-    NAME = 'TranslNB'
+    NAME = 'translnb'
     INSTANCE = TranslNBCtrl.new
   end
 
   class TranslADJSheet < TranslDefault
     IDX_CODE_ADJECTIVE = 2
-    NAME = 'TranslADJ'
+    NAME = 'transladj'
     INSTANCE = TranslADJCtrl.new
   end
 
   class TranslPronSheet < TranslDefault
     IDX_CODE_PRONOUN = 2
-    NAME = 'TranslPron'
+    NAME = 'translpron'
     INSTANCE = TranslPronCtrl.new
   end
 end

@@ -1,3 +1,0 @@
-class ArthicleModel < Entity
-
-end

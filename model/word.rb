@@ -1,3 +1,5 @@
-class wordModel < Entity
+require_relative 'entity'
+
+class WordModel < Entity
 
 end

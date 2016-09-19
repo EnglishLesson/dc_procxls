@@ -1,3 +1,6 @@
+require_relative 'entity'
+
+
 class QuestionnaireModel < Entity
   def getCodeQuestion
     @codeQuestion
@@ -13,13 +16,5 @@ class QuestionnaireModel < Entity
 
   def setCodeAnswer(codeAnswer)
     @codeAnswer = codeAnswer
-  end
-
-  def getRAnswer
-    @ranswer
-  end
-
-  def setRAnswer(ranswer)
-    @ranswer = ranswer
   end
 end

@@ -1,6 +1,6 @@
-class TranslVBModel < TranslDefault
+class TranslKWModel < TranslDefault
   def getCodeKeyword
-    @codeVerb
+    @codeKeyword
   end
 
   def setCodeKeyword(codeKeyword)

@@ -1,4 +1,4 @@
-require_relative '../model/translation/translvb'
+require_relative '../../model/translation/translvb'
 
 class TranslVBCtrl
   def initialize
@@ -10,8 +10,8 @@ class TranslVBCtrl
       translVBModel = TranslVBModel.new
       next if row.index_in_collection == 0
       translVBModel.setCode(row[MdSheet::TranslVBSheet::IDX_CODE])
-      translVBModel.setTranslation(row[MdSheet::TranslVBSheet::IDX_CODE_TRANSLATION])
-      translVBModel.setCodeWord(row[MdSheet::TranslVBSheet::IDX_CODE_VERB])
+      translVBModel.setCodeTranslation(row[MdSheet::TranslVBSheet::IDX_CODE_TRANSLATION])
+      translVBModel.setCodeVerb(row[MdSheet::TranslVBSheet::IDX_CODE_VERB])
       @translvbs.push(translVBModel)
     end
   end

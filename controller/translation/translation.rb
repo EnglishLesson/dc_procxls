@@ -11,7 +11,7 @@ class TranslationCtrl
       next if row.index_in_collection == 0
       translationModel.setCode(row[MdSheet::TranslationSheet::IDX_CODE])
       translationModel.setValue(row[MdSheet::TranslationSheet::IDX_VALUE])
-      translationModel.setCodeGender(row[MdSheet::TranslationSheet::IDX_GENDER])
+      translationModel.setCodeGender(row[MdSheet::TranslationSheet::IDX_CODE_GENDER])
       @translations.push(translationModel)
     end
   end

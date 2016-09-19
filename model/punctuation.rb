@@ -1,3 +1,0 @@
-class PunctuactionModel < Entity
-
-end

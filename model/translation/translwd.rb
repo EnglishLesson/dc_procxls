@@ -1,3 +1,5 @@
+require_relative 'transldefault'
+
 class TranslWDModel < TranslDefault
   def getCodeWord
     @codeWord

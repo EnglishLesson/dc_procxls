@@ -10,9 +10,8 @@ class QuestionnaireCtrl
       questionnaireModel = QuestionnaireModel.new
       next if row.index_in_collection == 0
       questionnaireModel.setCode(row[MdSheet::QuestionnaireSheet::IDX_CODE])
-      questionnaireModel.setCodeQuestion(row[MdSheet::QuestionnaireSheet::IDX_QUESTION])
-      questionnaireModel.setCodeAnswer(row[MdSheet::QuestionnaireSheet::IDX_ANSWER])
-      questionnaireModel.setRAnswer(row[MdSheet::QuestionnaireSheet::ID_RANSWER])
+      questionnaireModel.setCodeQuestion(row[MdSheet::QuestionnaireSheet::IDX_CODE_QUESTION])
+      questionnaireModel.setCodeAnswer(row[MdSheet::QuestionnaireSheet::IDX_CODE_ANSWER])
       @questionnaires.push(questionnaireModel)
     end
   end

@@ -1,3 +1,5 @@
+require_relative 'transldefault'
+
 class TranslPPModel < TranslDefault
   def getCodePreposition
     @codeNoun

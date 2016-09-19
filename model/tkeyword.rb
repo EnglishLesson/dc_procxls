@@ -1,4 +1,6 @@
-class VerbModel < Entity
+require_relative 'entity'
+
+class TKeywordModel < Entity
   def getName
     @name
   end

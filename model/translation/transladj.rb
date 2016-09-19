@@ -1,6 +1,6 @@
 class TranslADJModel < TranslDefault
   def getCodeAdjective
-    @codeVerb
+    @codeAdjective
   end
 
   def setCodeAdjective(codeAdjective)

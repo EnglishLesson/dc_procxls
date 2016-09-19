@@ -1,4 +1,6 @@
-class RulesVBModel < Entity
+require_relative 'rulesdefault'
+
+class RulesVBModel < RulesDefault
   def getCodeVerb
     @codeVerb
   end

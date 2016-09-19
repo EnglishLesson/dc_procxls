@@ -11,7 +11,7 @@ class TranslPronCtrl
       next if row.index_in_collection == 0
       translPronModel.setCode(row[MdSheet::TranslPronSheet::IDX_CODE])
       translPronModel.setCodeTranslation(row[MdSheet::TranslPronSheet::IDX_CODE_TRANSLATION])
-      translPronModel.setCodePreposition(row[MdSheet::TranslPronSheet::IDX_CODE_PRONOUN])
+      translPronModel.setCodePronoun(row[MdSheet::TranslPronSheet::IDX_CODE_PRONOUN])
       @translpron.push(translPronModel)
     end
   end

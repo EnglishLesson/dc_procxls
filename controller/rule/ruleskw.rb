@@ -7,7 +7,7 @@ class RulesKWCtrl
 
   def extractData(sheets)
     for row in sheets
-      rulesKWModel = RulesNNModel.new
+      rulesKWModel = RulesKWModel.new
       next if row.index_in_collection == 0
       rulesKWModel.setCode(row[MdSheet::RulesKWSheet::IDX_CODE])
       rulesKWModel.setCodeRule(row[MdSheet::RulesKWSheet::IDX_CODE_RULE])

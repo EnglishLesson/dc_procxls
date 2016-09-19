@@ -10,7 +10,7 @@ class TranslNBCtrl
       translNBModel = TranslNBModel.new
       next if row.index_in_collection == 0
       translNBModel.setCode(row[MdSheet::TranslNBSheet::IDX_CODE])
-      translNBModel.setTranslation(row[MdSheet::TranslNBSheet::IDX_CODE_TRANSLATION])
+      translNBModel.setCodeTranslation(row[MdSheet::TranslNBSheet::IDX_CODE_TRANSLATION])
       translNBModel.setCodeNumber(row[MdSheet::TranslNBSheet::IDX_CODE_NUMBER])
       @translnbs.push(translNBModel)
     end

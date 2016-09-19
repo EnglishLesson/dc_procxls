@@ -1,3 +1,5 @@
+require_relative 'transldefault'
+
 class TranslNBModel < TranslDefault
   def getCodeNumber
     @codeVerb

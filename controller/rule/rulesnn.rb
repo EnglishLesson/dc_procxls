@@ -10,8 +10,8 @@ class RulesNNCtrl
       rulesNNModel = RulesNNModel.new
       next if row.index_in_collection == 0
       rulesNNModel.setCode(row[MdSheet::RulesNNSheet::IDX_CODE])
-      rulesNNModel.setCodeRule(row[MdSheet::RulesNNSheet::IDX_RULE])
-      rulesNNModel.setCodeVerb(row[MdSheet::RulesNNSheet::IDX_NOUN])
+      rulesNNModel.setCodeRule(row[MdSheet::RulesNNSheet::IDX_CODE_RULE])
+      rulesNNModel.setCodeNoun(row[MdSheet::RulesNNSheet::IDX_CODE_NOUN])
       @rulesnns.push(rulesNNModel)
     end
   end
