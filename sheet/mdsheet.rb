@@ -59,7 +59,6 @@ module MdSheet
   end
 
   class GenderSheet < SheetDefault
-    IDX_ALS = 2
     NAME = 'gender'
     INSTANCE = GenderCtrl.new
   end

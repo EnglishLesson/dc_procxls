@@ -7,13 +7,28 @@ class RuleCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0
+      next if row.index_in_collection == 0 || row[MdSheet::RuleSheet::IDX_CODE] == nil
+
       ruleModel = RuleModel.new
       ruleModel.setCode(row[MdSheet::RuleSheet::IDX_CODE])
       ruleModel.setValue(row[MdSheet::RuleSheet::IDX_VALUE])
       ruleModel.setName(row[MdSheet::RuleSheet::IDX_NAME])
       @rules.push(ruleModel)
     end
+  end
+
+  def persistData()
+    for rule in @rules
+      code = MdDb::DBUtil::INSTANCE.getCodeFormat(rule.getCode().value)
+      name = MdDb::DBUtil::INSTANCE.getStringFormat(rule.getName().value)
+      val  = MdDb::DBUtil::INSTANCE.getStringFormat(rule.getValue().value)
+      params = [code, name, val]
+
+      MdDb::RunDB.connect()
+      MdDb::RunDB.persistData(MdSheet::RuleSheet::NAME, rule.to_s, params)
+    end
+
+    MdDb::RunDB.closeConnection()
   end
 
   def showDataXls()

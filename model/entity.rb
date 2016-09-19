@@ -22,8 +22,4 @@ class Entity
   def setValue(value)
     @value = value
   end
-
-  def to_s
-    puts "#{@code},#{@value}"
-  end
 end

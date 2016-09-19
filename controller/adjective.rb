@@ -16,6 +16,18 @@ class AdjectiveCtrl
     end
   end
 
+  #def persistData()
+  #  for adjective in @adjectives
+  #    tName = MdDb::DBUtil::INSTANCE.getStringFormat(adjective.getTName().value)
+  #    code = MdDb::DBUtil::INSTANCE.getCodeFormat(adjective.getCode().value)
+  #    params = [tName, code]
+
+  #    MdDb::RunDB::INSTANCE.persistData(MdSheet::AdjectiveSheet::NAME, adjective.to_s, params)
+  #  end
+
+  #  MdDb::RunDB::INSTANCE.closeConnection
+  #end
+
   def showDataXls()
     for adjective in @adjectives
       puts adjective.getCode().value

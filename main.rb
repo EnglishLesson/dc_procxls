@@ -25,8 +25,6 @@ mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::GenderSheet, 
   MdSheet::TranslNBSheet, MdSheet::TranslADJSheet, MdSheet::TranslPronSheet
 ]
 
-
-
 #validate the structure
 #begin
   for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
@@ -34,7 +32,8 @@ mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::GenderSheet, 
     currentInstance = currentSheet::INSTANCE
     currentInstance.extractData(workbook[currentSheet::NAME])
     currentInstance.persistData()
-    break
+
+    break if idx == 2
   end
 #rescue
 #  puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red

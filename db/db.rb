@@ -17,6 +17,10 @@ class DataBase
     @statmentCount += 1
   end
 
+  def getEntityColumns(table)
+
+  end
+
   def getParams(columns)
     params = '('
 

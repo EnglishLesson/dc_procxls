@@ -8,8 +8,9 @@ class CodesTCtrl
 
   def extractData(sheets)
     for row in sheets
+      next if row.index_in_collection == 0 || row[MdSheet::CodesTSheet::IDX_CODE] == nil
+
       codestModel = CodesTModel.new
-      next if row.index_in_collection == 0
       codestModel.setCode(row[MdSheet::CodesTSheet::IDX_CODE])
       codestModel.setTName(row[MdSheet::CodesTSheet::IDX_TNAME])
       @codests.push(codestModel)
@@ -22,10 +23,11 @@ class CodesTCtrl
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(codest.getCode().value)
       params = [tName, code]
 
-      MdDb::RunDB::INSTANCE.persistData(MdSheet::CodesTSheet::NAME, codest.to_s, params)
+      MdDb::RunDB.connect()
+      MdDb::RunDB.persistData(MdSheet::CodesTSheet::NAME, codest.to_s, params)
     end
 
-    MdDb::RunDB::INSTANCE.closeConnection
+    MdDb::RunDB.closeConnection()
   end
 
   def showDataXls()

@@ -7,12 +7,26 @@ class GenderCtrl
 
   def extractData(sheets)
     for row in sheets
+      next if row.index_in_collection == 0 || row[MdSheet::GenderSheet::IDX_VALUE] == nil
+
       genderModel = GenderModel.new
-      next if row.index_in_collection == 0
       genderModel.setCode(row[MdSheet::GenderSheet::IDX_CODE])
       genderModel.setValue(row[MdSheet::GenderSheet::IDX_VALUE])
       @genders.push(genderModel)
     end
+  end
+
+  def persistData()
+    for gender in @genders
+      code = MdDb::DBUtil::INSTANCE.getCodeFormat(gender.getCode().value)
+      val  = MdDb::DBUtil::INSTANCE.getStringFormat(gender.getValue().value)
+      params = [code, val]
+
+      MdDb::RunDB.connect()
+      MdDb::RunDB.persistData(MdSheet::GenderSheet::NAME, gender.to_s, params)
+    end
+
+    MdDb::RunDB.closeConnection()
   end
 
   def showDataXls()

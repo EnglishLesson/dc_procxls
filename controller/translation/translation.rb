@@ -7,8 +7,10 @@ class TranslationCtrl
 
   def extractData(sheets)
     for row in sheets
+      next if row.index_in_collection == 0 || row[MdSheet::TranslationSheet::IDX_CODE] == nil ||
+        row[MdSheet::TranslationSheet::IDX_VALUE] == nil
+
       translationModel = TranslationModel.new
-      next if row.index_in_collection == 0
       translationModel.setCode(row[MdSheet::TranslationSheet::IDX_CODE])
       translationModel.setValue(row[MdSheet::TranslationSheet::IDX_VALUE])
       translationModel.setCodeGender(row[MdSheet::TranslationSheet::IDX_CODE_GENDER])

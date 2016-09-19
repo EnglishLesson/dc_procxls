@@ -8,4 +8,8 @@ class RuleModel < Entity
   def setName(name)
     @name = name
   end
+
+  def to_s
+    return "(code, name, val)"
+  end
 end
