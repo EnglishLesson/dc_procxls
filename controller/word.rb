@@ -7,12 +7,28 @@ class WordCtrl
 
   def extractData(sheets)
     for row in sheets
-      wordModel = VerbModel.new
-      next if row.index_in_collection == 0
+      next if row.index_in_collection == 0 || row[MdSheet::WordSheet::IDX_CODE] == nil ||
+        row[MdSheet::ExceptionSheet::IDX_VALUE] == nil
+
+      wordModel = WordModel.new
       wordModel.setCode(row[MdSheet::WordSheet::IDX_CODE])
       wordModel.setValue(row[MdSheet::WordSheet::IDX_VALUE])
       @words.push(wordModel)
     end
+  end
+
+  def persistData()
+    MdDb::RunDB.connect()
+
+    for word in @words
+      code = MdDb::DBUtil::INSTANCE.getCodeFormat(word.getCode().value)
+      value = MdDb::DBUtil::INSTANCE.getStringFormat(word.getValue().value)
+      params = [code, value]
+
+      MdDb::RunDB.persistData(MdSheet::WordSheet::NAME, word.to_s, params)
+    end
+
+    MdDb::RunDB.closeConnection()
   end
 
   def showDataXls()

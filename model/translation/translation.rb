@@ -1,10 +1,10 @@
 class TranslationModel < Entity
-  def getCodeGender
-    @codeGender
+  def getGenderId
+    @genderId
   end
 
-  def setCodeGender(codeGender)
-    @codeGender = codeGender
+  def setGenderId(genderId)
+    @genderId = genderId
   end
 
   def to_s

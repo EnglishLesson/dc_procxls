@@ -10,4 +10,8 @@ class DbUtil
   def getStringFormat(str)
     return '{'.concat(str).concat('}')
   end
+
+  def getIdDb(name, code)
+    return MdDb::RunDB.select(name, 'id', "code = '".concat(code).concat("'"))
+  end
 end

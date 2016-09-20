@@ -18,13 +18,14 @@ class RuleCtrl
   end
 
   def persistData()
+    MdDb::RunDB.connect()
+
     for rule in @rules
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(rule.getCode().value)
       name = MdDb::DBUtil::INSTANCE.getStringFormat(rule.getName().value)
       val  = MdDb::DBUtil::INSTANCE.getStringFormat(rule.getValue().value)
       params = [code, name, val]
 
-      MdDb::RunDB.connect()
       MdDb::RunDB.persistData(MdSheet::RuleSheet::NAME, rule.to_s, params)
     end
 

@@ -9,6 +9,7 @@ class DataBase
 
   def insertData(table, columns, values)
     params = getParams(columns)
+
     stName = "statement".concat(@statmentCount.to_s)
 
     @connection.prepare(stName, "INSERT INTO #{table} #{columns} VALUES #{params}")
@@ -17,9 +18,9 @@ class DataBase
     @statmentCount += 1
   end
 
-  def selectData(table, columns, params)
-    res = @connection.exec("SELECT #{columns} FROM #{table} WHERE #{params}")
-    return res.values
+  def selectData(table, column, params)
+    res = @connection.exec("SELECT #{column} FROM #{table} WHERE #{params}")
+    return res[0][column]
   end
 
   def getParams(columns)

@@ -1,11 +1,15 @@
 require_relative 'rulesdefault'
 
 class RulesWDModel < RulesDefault
-  def getCodeWord
-    @codeWord
+  def getWordId
+    @wordId
   end
 
-  def setCodeWord(codeWord)
-    @codeWord = codeWord
+  def setWordId(wordId)
+    @wordId = wordId
+  end
+
+  def to_s
+    return "(code, id_rule, id_word, id_exception)"
   end
 end

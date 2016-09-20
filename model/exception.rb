@@ -8,4 +8,8 @@ class ExceptionModel < Entity
     def setName(name)
       @name = name
     end
+
+    def to_s
+      return "(code, val, name)"
+    end
 end

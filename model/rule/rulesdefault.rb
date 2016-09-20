@@ -7,19 +7,19 @@ class RulesDefault
     @code = code
   end
 
-  def getCodeRule
-    @codeRule
+  def getRuleId
+    @ruleId
   end
 
-  def setCodeRule(codeRule)
-    @codeRule = codeRule
+  def setRuleId(ruleId)
+    @ruleId = ruleId
   end
 
-  def getCodeException
-    @codeException
+  def getExceptionId
+    @exceptionId
   end
 
-  def setCodeException(codeException)
-    @codeException = codeException
+  def setExceptionId(exceptionId)
+    @exceptionId = exceptionId
   end
 end

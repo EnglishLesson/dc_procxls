@@ -27,10 +27,14 @@ mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::GenderSheet, 
   for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
     currentSheet = mdSheet[idx]
     currentInstance = currentSheet::INSTANCE
-    currentInstance.extractData(workbook[currentSheet::NAME])
-    currentInstance.persistData()
+    #currentInstance.persistData()
 
-    break if idx == 3
+    if idx == 9
+      currentInstance.extractData(workbook[currentSheet::NAME])
+      currentInstance.persistData()
+    end
+
+    break if idx == 9
   end
 #rescue
 #  puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red

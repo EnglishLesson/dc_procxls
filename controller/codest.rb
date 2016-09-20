@@ -18,12 +18,13 @@ class CodesTCtrl
   end
 
   def persistData()
+    MdDb::RunDB.connect()
+    
     for codest in @codests
       tName = MdDb::DBUtil::INSTANCE.getStringFormat(codest.getTName().value)
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(codest.getCode().value)
       params = [tName, code]
 
-      MdDb::RunDB.connect()
       MdDb::RunDB.persistData(MdSheet::CodesTSheet::NAME, codest.to_s, params)
     end
 
