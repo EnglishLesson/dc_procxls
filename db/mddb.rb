@@ -13,6 +13,10 @@ module MdDb
       INSTANCE.persistData(tableName, columns, params)
     end
 
+    def self.select(tableName, columns, params)
+      INSTANCE.select(tableName, columns, params)
+    end
+
     def self.closeConnection()
       INSTANCE.closeConnection()
     end

@@ -4,9 +4,6 @@ require 'colorize'
 
 require_relative 'sheet/mdsheet'
 
-#MdDb::RunDB::INSTANCE.persistData('el."codest"', "(tname, code)", ['{rules27}', '/007'])
-#MdDB::RunDB::INSTANCE.closeConnection
-
 fileXls = nil
 
 Find.find("/") do |file|
@@ -33,7 +30,7 @@ mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::GenderSheet, 
     currentInstance.extractData(workbook[currentSheet::NAME])
     currentInstance.persistData()
 
-    break if idx == 2
+    break if idx == 3
   end
 #rescue
 #  puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red

@@ -17,8 +17,9 @@ class DataBase
     @statmentCount += 1
   end
 
-  def getEntityColumns(table)
-
+  def selectData(table, columns, params)
+    res = @connection.exec("SELECT #{columns} FROM #{table} WHERE #{params}")
+    return res.values
   end
 
   def getParams(columns)

@@ -9,6 +9,10 @@ class Instance
     @instance.insertData('el."'.concat(tableName).concat('"'), columns, values)
   end
 
+  def select(tableName, columns, values)
+    @instance.selectData('el."'.concat(tableName).concat('"'), columns, values)
+  end
+
   def closeConnection
     @instance.closeConnection
   end
