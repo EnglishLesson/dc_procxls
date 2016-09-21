@@ -1,11 +1,15 @@
 require_relative 'transldefault'
 
 class TranslPPModel < TranslDefault
-  def getCodePreposition
-    @codeNoun
+  def getPrepositionId
+    @prepositionId
   end
 
-  def setCodePreposition(codePreposition)
-    @codePreposition = codePreposition
+  def setPrepositionId(prepositionId)
+    @prepositionId = prepositionId
+  end
+
+  def to_s
+    return "(code, id_translation, id_preposition)"
   end
 end

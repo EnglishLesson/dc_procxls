@@ -19,8 +19,8 @@ class TranslationCtrl
 
       genderId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::GenderSheet::NAME,
         MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::TranslationSheet::IDX_CODE_GENDER].value()))
-        
-      translationModel.setGenderId(genderId.to_s.to_i)
+
+      translationModel.setGenderId(genderId)
       @translations.push(translationModel)
     end
 

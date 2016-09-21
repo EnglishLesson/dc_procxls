@@ -7,7 +7,8 @@ class RuleCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::RuleSheet::IDX_CODE] == nil
+      next if row.index_in_collection == 0 || row[MdSheet::RuleSheet::IDX_CODE] == nil ||
+        row[MdSheet::RuleSheet::IDX_VALUE] == nil || row[MdSheet::RuleSheet::IDX_NAME] == nil
 
       ruleModel = RuleModel.new
       ruleModel.setCode(row[MdSheet::RuleSheet::IDX_CODE])

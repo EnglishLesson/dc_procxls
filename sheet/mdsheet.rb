@@ -113,8 +113,9 @@ module MdSheet
     INSTANCE = PrepositionCtrl.new
   end
 
-  class TKeywordSheet < SheetDefault
-    IDX_NAME = 2
+  class TKeywordSheet
+    IDX_CODE = 0
+    IDX_NAME = 1
     NAME = 'tkeyword'
     INSTANCE = TKeywordCtrl.new
   end

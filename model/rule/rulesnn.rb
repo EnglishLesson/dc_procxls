@@ -1,11 +1,15 @@
 require_relative 'rulesdefault'
 
 class RulesNNModel < RulesDefault
-  def getCodeNoun
-    @codeNoun
+  def getNounId
+    @nounId
   end
 
-  def setCodeNoun(codeNoun)
-    @codeNoun = codeNoun
+  def setNounId(nounId)
+    @nounId = nounId
+  end
+
+  def to_s
+    return "(code, id_rule, id_noun, id_exception)"
   end
 end

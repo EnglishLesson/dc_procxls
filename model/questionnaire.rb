@@ -2,19 +2,23 @@ require_relative 'entity'
 
 
 class QuestionnaireModel < Entity
-  def getCodeQuestion
-    @codeQuestion
+  def getQuestionId
+    @questionId
   end
 
-  def setCodeQuestion(codeQuestion)
-    @codeQuestion = codeQuestion
+  def setQuestionId(questionId)
+    @questionId = questionId
   end
 
-  def getCodeAnswer
-    @codeAnswer
+  def getAnswerId
+    @answerId
   end
 
-  def setCodeAnswer(codeAnswer)
-    @codeAnswer = codeAnswer
+  def setAnswerId(answerId)
+    @answerId = answerId
+  end
+
+  def to_s
+    return "(code, id_question, id_answer)"
   end
 end

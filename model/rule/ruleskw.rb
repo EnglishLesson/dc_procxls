@@ -1,11 +1,15 @@
 require_relative 'rulesdefault'
 
 class RulesKWModel < RulesDefault
-  def getCodeKeyword
-    @codeNoun
+  def getKeywordId
+    @keywordId
   end
 
-  def setCodeKeyword(codeKeyword)
-    @codeKeyword = codeKeyword
+  def setKeywordId(keywordId)
+    @keywordId = keywordId
+  end
+
+  def to_s
+    return "(code, id_rule, id_keyword, id_exception)"
   end
 end

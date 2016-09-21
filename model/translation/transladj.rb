@@ -1,9 +1,13 @@
 class TranslADJModel < TranslDefault
-  def getCodeAdjective
-    @codeAdjective
+  def getAdjectiveId
+    @adjectiveId
   end
 
-  def setCodeAdjective(codeAdjective)
-    @codeAdjective = codeAdjective
+  def setAdjectiveId(adjectiveId)
+    @adjectiveId = adjectiveId
+  end
+
+  def to_s
+    return "(code, id_translation, id_adjective)"
   end
 end

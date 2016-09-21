@@ -1,9 +1,13 @@
 class TranslKWModel < TranslDefault
-  def getCodeKeyword
-    @codeKeyword
+  def getKeywordId
+    @keywordId
   end
 
-  def setCodeKeyword(codeKeyword)
-    @codeKeyword = codeKeyword
+  def setKeywordId(keywordId)
+    @keywordId = keywordId
+  end
+
+  def to_s
+    return "(code, id_keyword, id_translation)"
   end
 end

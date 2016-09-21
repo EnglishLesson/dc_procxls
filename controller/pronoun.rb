@@ -7,12 +7,28 @@ class PronounCtrl
 
   def extractData(sheets)
     for row in sheets
+      next if row.index_in_collection == 0 || row[MdSheet::PronounSheet::IDX_CODE] == nil ||
+        row[MdSheet::PronounSheet::IDX_VALUE] == nil
+
       pronounModel = PronounModel.new
-      next if row.index_in_collection == 0
       pronounModel.setCode(row[MdSheet::PronounSheet::IDX_CODE])
       pronounModel.setValue(row[MdSheet::PronounSheet::IDX_VALUE])
       @pronouns.push(pronounModel)
     end
+  end
+
+  def persistData()
+    MdDb::RunDB.connect()
+
+    for pronoun in @pronouns
+      code = MdDb::DBUtil::INSTANCE.getCodeFormat(pronoun.getCode().value)
+      value = MdDb::DBUtil::INSTANCE.getStringFormat(pronoun.getValue().value)
+      params = [code, value]
+
+      MdDb::RunDB.persistData(MdSheet::PronounSheet::NAME, pronoun.to_s, params)
+    end
+
+    MdDb::RunDB.closeConnection()
   end
 
   def showDataXls()

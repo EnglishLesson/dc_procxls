@@ -1,11 +1,15 @@
 require_relative 'transldefault'
 
 class TranslNNModel < TranslDefault
-  def getCodeNoun
-    @codeNoun
+  def getNounId
+    @nounId
   end
 
-  def setCodeNoun(codeNoun)
-    @codeNoun = codeNoun
+  def setNounId(nounId)
+    @nounId = nounId
+  end
+
+  def to_s
+    return "(code, id_translation, id_noun)"
   end
 end

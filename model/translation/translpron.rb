@@ -1,11 +1,15 @@
 require_relative 'transldefault'
 
 class TranslPronModel < TranslDefault
-  def getCodePronoun
-    @codePronoun
+  def getPronounId
+    @pronounId
   end
 
-  def setCodePronoun(codePronoun)
-    @codePronoun = codePronoun
+  def setPronounId(pronounId)
+    @pronounId = pronounId
+  end
+
+  def to_s
+    return "(code, id_translation, id_pronoun)"
   end
 end

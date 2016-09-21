@@ -1,11 +1,15 @@
 require_relative 'transldefault'
 
 class TranslVBModel < TranslDefault
-  def getCodeVerb
-    @codeVerb
+  def getVerbId
+    @verbId
   end
 
-  def setCodeVerb(codeVerb)
-    @codeVerb = codeVerb
+  def setVerbId(verbId)
+    @verbId = verbId
+  end
+
+  def to_s
+    return "(code, id_translation, id_verb)"
   end
 end

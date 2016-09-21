@@ -1,11 +1,15 @@
 require_relative 'transldefault'
 
 class TranslWDModel < TranslDefault
-  def getCodeWord
-    @codeWord
+  def getWordId
+    @wordId
   end
 
-  def setCodeWord(codeWord)
-    @codeWord = codeWord
+  def setWordId(wordId)
+    @wordId = wordId
+  end
+
+  def to_s
+    return "(code, id_translation, id_word)"
   end
 end

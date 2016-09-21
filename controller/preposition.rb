@@ -7,12 +7,28 @@ class PrepositionCtrl
 
   def extractData(sheets)
     for row in sheets
+      next if row.index_in_collection == 0 || row[MdSheet::PrepositionSheet::IDX_CODE] == nil ||
+        row[MdSheet::PrepositionSheet::IDX_VALUE] == nil
+
       prepositionModel = PrepositionModel.new
-      next if row.index_in_collection == 0
       prepositionModel.setCode(row[MdSheet::PrepositionSheet::IDX_CODE])
       prepositionModel.setValue(row[MdSheet::PrepositionSheet::IDX_VALUE])
       @prepositions.push(prepositionModel)
     end
+  end
+
+  def persistData()
+    MdDb::RunDB.connect()
+
+    for preposition in @prepositions
+      code = MdDb::DBUtil::INSTANCE.getCodeFormat(preposition.getCode().value)
+      val  = MdDb::DBUtil::INSTANCE.getStringFormat(preposition.getValue().value)
+      params = [code, val]
+
+      MdDb::RunDB.persistData(MdSheet::PrepositionSheet::NAME, preposition.to_s, params)
+    end
+
+    MdDb::RunDB.closeConnection()
   end
 
   def showDataXls()

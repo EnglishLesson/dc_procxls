@@ -1,11 +1,15 @@
 require_relative 'transldefault'
 
 class TranslNBModel < TranslDefault
-  def getCodeNumber
-    @codeVerb
+  def getNumberId
+    @numberId
   end
 
-  def setCodeNumber(codeNumber)
-    @codeNumber = codeNumber
+  def setNumberId(numberId)
+    @numberId = numberId
+  end
+
+  def to_s
+    return "(code, id_translation, id_number)"
   end
 end

@@ -8,25 +8,29 @@ class AdjectiveCtrl
 
   def extractData(sheets)
     for row in sheets
+      next if row.index_in_collection == 0 || row[MdSheet::AdjectiveSheet::IDX_CODE] == nil ||
+        row[MdSheet::AdjectiveSheet::IDX_VALUE] == nil
+
       adjectiveModel = AdjectiveModel.new
-      next if row.index_in_collection == 0
       adjectiveModel.setCode(row[MdSheet::AdjectiveSheet::IDX_CODE])
       adjectiveModel.setValue(row[MdSheet::AdjectiveSheet::IDX_VALUE])
       @adjectives.push(adjectiveModel)
     end
   end
 
-  #def persistData()
-  #  for adjective in @adjectives
-  #    tName = MdDb::DBUtil::INSTANCE.getStringFormat(adjective.getTName().value)
-  #    code = MdDb::DBUtil::INSTANCE.getCodeFormat(adjective.getCode().value)
-  #    params = [tName, code]
+  def persistData()
+    MdDb::RunDB.connect()
 
-  #    MdDb::RunDB::INSTANCE.persistData(MdSheet::AdjectiveSheet::NAME, adjective.to_s, params)
-  #  end
+    for adjective in @adjectives
+      code = MdDb::DBUtil::INSTANCE.getCodeFormat(adjective.getCode().value)
+      value = MdDb::DBUtil::INSTANCE.getStringFormat(adjective.getValue().value)
+      params = [code, value]
 
-  #  MdDb::RunDB::INSTANCE.closeConnection
-  #end
+      MdDb::RunDB.persistData(MdSheet::AdjectiveSheet::NAME, adjective.to_s, params)
+    end
+
+    MdDb::RunDB.closeConnection()
+  end
 
   def showDataXls()
     for adjective in @adjectives

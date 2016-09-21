@@ -7,11 +7,11 @@ class TranslDefault
     @code = code
   end
 
-  def getCodeTranslation
-    @codeTranslation
+  def getTranslationId
+    @translationId
   end
 
-  def setCodeTranslation(codeTranslation)
-    @codeTranslation = codeTranslation
+  def setTranslationId(translationId)
+    @translationId = translationId
   end
 end
