@@ -24,12 +24,19 @@ mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::GenderSheet, 
 
 #validate the structure
 begin
+  puts "Iniciando migração de dados\n\n"
+
   for idx in mdSheet.rindex(mdSheet.first)..mdSheet.rindex(mdSheet.last)
     currentSheet = mdSheet[idx]
+
+    puts "\tMigrando dados na tabela ".concat(currentSheet::NAME)
+
     currentInstance = currentSheet::INSTANCE
     currentInstance.extractData(workbook[currentSheet::NAME])
     currentInstance.persistData()
   end
+
+  puts "\nMigração realizada com sucesso!".green
 rescue
   puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red
 end
