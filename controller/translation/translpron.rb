@@ -9,8 +9,10 @@ class TranslPronCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslPronSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslPronSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslPronSheet::IDX_CODE_PRONOUN] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslPronSheet::IDX_CODE] == nil || row[MdSheet::TranslPronSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslPronSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslPronSheet::IDX_CODE_TRANSLATION].value == nil) ||
+      (row[MdSheet::TranslPronSheet::IDX_CODE_PRONOUN] == nil || row[MdSheet::TranslPronSheet::IDX_CODE_PRONOUN].value == nil)
 
       translPronModel = TranslPronModel.new
       translPronModel.setCode(row[MdSheet::TranslPronSheet::IDX_CODE])

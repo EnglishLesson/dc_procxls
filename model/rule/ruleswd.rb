@@ -10,6 +10,6 @@ class RulesWDModel < RulesDefault
   end
 
   def to_s
-    return "(code, id_rule, id_word, id_exception)"
+    return "(code, id_rule, id_word)"
   end
 end

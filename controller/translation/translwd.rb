@@ -9,8 +9,10 @@ class TranslWDCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslWDSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslWDSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslWDSheet::IDX_CODE_WORD] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslWDSheet::IDX_CODE] == nil || row[MdSheet::TranslWDSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslWDSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslWDSheet::IDX_CODE_TRANSLATION].value == nil) ||
+      (row[MdSheet::TranslWDSheet::IDX_CODE_WORD] == nil || row[MdSheet::TranslWDSheet::IDX_CODE_WORD].value == nil)
 
       translWDModel = TranslWDModel.new
       translWDModel.setCode(row[MdSheet::TranslWDSheet::IDX_CODE])

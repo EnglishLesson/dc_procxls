@@ -10,6 +10,6 @@ class RulesKWModel < RulesDefault
   end
 
   def to_s
-    return "(code, id_rule, id_keyword, id_exception)"
+    return "(code, id_rule, id_keyword)"
   end
 end

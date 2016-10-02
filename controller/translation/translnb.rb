@@ -9,8 +9,10 @@ class TranslNBCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslNBSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslNBSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslNBSheet::IDX_CODE_NUMBER] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslNBSheet::IDX_CODE] == nil || row[MdSheet::TranslNBSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslNBSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslNBSheet::IDX_CODE_TRANSLATION].value == nil) ||
+      (row[MdSheet::TranslNBSheet::IDX_CODE_NUMBER] == nil || row[MdSheet::TranslNBSheet::IDX_CODE_NUMBER].value == nil)
 
       translNBModel = TranslNBModel.new
       translNBModel.setCode(row[MdSheet::TranslNBSheet::IDX_CODE])

@@ -7,8 +7,9 @@ class NounCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::NounSheet::IDX_CODE] == nil ||
-        row[MdSheet::NounSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::NounSheet::IDX_CODE] == nil || row[MdSheet::NounSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::NounSheet::IDX_VALUE] == nil || row[MdSheet::NounSheet::IDX_VALUE].value == nil)
 
       nounModel = NounModel.new
       nounModel.setCode(row[MdSheet::NounSheet::IDX_CODE])
@@ -22,7 +23,7 @@ class NounCtrl
 
     for noun in @nouns
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(noun.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(noun.getValue().value)
+      value = noun.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::NounSheet::NAME, noun.to_s, params)

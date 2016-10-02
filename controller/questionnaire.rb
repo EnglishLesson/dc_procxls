@@ -9,8 +9,10 @@ class QuestionnaireCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::QuestionnaireSheet::IDX_CODE] == nil ||
-        row[MdSheet::QuestionnaireSheet::IDX_CODE_QUESTION] == nil || row[MdSheet::QuestionnaireSheet::IDX_CODE_ANSWER] == nil
+      next if row.index_in_collection == 0 ||
+        (row[MdSheet::QuestionnaireSheet::IDX_CODE] == nil || row[MdSheet::QuestionnaireSheet::IDX_CODE].value == nil) ||
+        (row[MdSheet::QuestionnaireSheet::IDX_CODE_QUESTION] == nil || row[MdSheet::QuestionnaireSheet::IDX_CODE_QUESTION].value == nil)||
+        (row[MdSheet::QuestionnaireSheet::IDX_CODE_ANSWER] == nil || row[MdSheet::QuestionnaireSheet::IDX_CODE_ANSWER].value == nil)
 
       questionnaireModel = QuestionnaireModel.new
       questionnaireModel.setCode(row[MdSheet::QuestionnaireSheet::IDX_CODE])

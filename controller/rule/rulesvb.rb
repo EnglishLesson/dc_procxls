@@ -9,9 +9,10 @@ class RulesVBCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::RulesVBSheet::IDX_CODE] == nil ||
-        row[MdSheet::RulesWDSheet::IDX_CODE_RULE] == nil || row[MdSheet::RulesVBSheet::IDX_CODE_VERB] == nil ||
-          row[MdSheet::RulesVBSheet::IDX_CODE_EXCEPTION] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::RulesVBSheet::IDX_CODE] == nil || row[MdSheet::RulesVBSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::RulesVBSheet::IDX_CODE_RULE] == nil || row[MdSheet::RulesVBSheet::IDX_CODE_RULE].value == nil) ||
+      (row[MdSheet::RulesVBSheet::IDX_CODE_VERB] == nil || row[MdSheet::RulesVBSheet::IDX_CODE_VERB].value == nil)
 
       rulesVBModel = RulesVBModel.new
       rulesVBModel.setCode(row[MdSheet::RulesVBSheet::IDX_CODE])
@@ -23,10 +24,6 @@ class RulesVBCtrl
       verbId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::VerbSheet::NAME,
         MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::RulesVBSheet::IDX_CODE_VERB].value()))
       rulesVBModel.setVerbId(verbId)
-
-      exceptionId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::ExceptionSheet::NAME,
-        MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::RulesVBSheet::IDX_CODE_EXCEPTION].value()))
-      rulesVBModel.setExceptionId(exceptionId)
 
       @rulesvbs.push(rulesVBModel)
     end
@@ -40,7 +37,7 @@ class RulesVBCtrl
     for rulesvb in @rulesvbs
 
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(rulesvb.getCode().value)
-      params = [code, rulesvb.getRuleId(), rulesvb.getVerbId(), rulesvb.getExceptionId()]
+      params = [code, rulesvb.getRuleId(), rulesvb.getVerbId()]
 
       MdDb::RunDB.persistData(MdSheet::RulesVBSheet::NAME, rulesvb.to_s, params)
     end
@@ -53,7 +50,6 @@ class RulesVBCtrl
       puts rulesvb.getCode()
       puts rulesvb.getRuleId()
       puts rulesvb.getVerbId()
-      puts rulesvb.getExceptionId()
     end
   end
 end

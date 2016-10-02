@@ -7,12 +7,13 @@ class VerbCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::VerbSheet::IDX_CODE] == nil ||
-        row[MdSheet::VerbSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 || (row[MdSheet::VerbSheet::IDX_CODE] == nil || row[MdSheet::VerbSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::VerbSheet::IDX_VALUE] == nil || row[MdSheet::VerbSheet::IDX_VALUE].value == nil)
 
       verbModel = VerbModel.new
       verbModel.setCode(row[MdSheet::VerbSheet::IDX_CODE])
       verbModel.setValue(row[MdSheet::VerbSheet::IDX_VALUE])
+
       @verbs.push(verbModel)
     end
   end
@@ -22,7 +23,7 @@ class VerbCtrl
 
     for verb in @verbs
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(verb.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(verb.getValue().value)
+      value = verb.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::VerbSheet::NAME, verb.to_s, params)

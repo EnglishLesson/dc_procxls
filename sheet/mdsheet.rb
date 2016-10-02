@@ -1,8 +1,6 @@
 require_relative '../controller/codest'
 require_relative '../controller/rule/rule'
-require_relative '../controller/gender'
 require_relative '../controller/translation/translation'
-require_relative '../controller/exception'
 require_relative '../controller/word'
 require_relative '../controller/rule/ruleswd'
 require_relative '../controller/verb'
@@ -42,7 +40,6 @@ module MdSheet
   class RulesDefault
     IDX_CODE = 0
     IDX_CODE_RULE = 1
-    IDX_CODE_EXCEPTION = 2
   end
 
   class CodesTSheet
@@ -58,21 +55,9 @@ module MdSheet
     INSTANCE = RuleCtrl.new
   end
 
-  class GenderSheet < SheetDefault
-    NAME = 'gender'
-    INSTANCE = GenderCtrl.new
-  end
-
   class TranslationSheet < SheetDefault
-    IDX_CODE_GENDER = 2
     NAME       = 'translation'
     INSTANCE = TranslationCtrl.new
-  end
-
-  class ExceptionSheet < SheetDefault
-    IDX_NAME = 2
-    NAME = 'exception'
-    INSTANCE = ExceptionCtrl.new
   end
 
   class WordSheet < SheetDefault
@@ -81,7 +66,7 @@ module MdSheet
   end
 
   class RulesWDSheet < RulesDefault
-    IDX_CODE_WORD = 3
+    IDX_CODE_WORD = 2
     NAME = 'ruleswd'
     INSTANCE = RulesWDCtrl.new
   end
@@ -92,7 +77,7 @@ module MdSheet
   end
 
   class RulesVBSheet < RulesDefault
-    IDX_CODE_VERB  = 3
+    IDX_CODE_VERB  = 2
     NAME      = 'rulesvb'
     INSTANCE =  RulesVBCtrl.new
   end
@@ -103,7 +88,7 @@ module MdSheet
   end
 
   class RulesNNSheet < RulesDefault
-    IDX_CODE_NOUN = 3
+    IDX_CODE_NOUN = 2
     NAME          = 'rulesnn'
     INSTANCE      = RulesNNCtrl.new
   end
@@ -127,7 +112,7 @@ module MdSheet
   end
 
   class RulesKWSheet < RulesDefault
-    IDX_CODE_KEYWORD = 3
+    IDX_CODE_KEYWORD = 2
     NAME = 'ruleskw'
     INSTANCE = RulesKWCtrl.new
   end
@@ -160,7 +145,6 @@ module MdSheet
   class QuestionnaireSheet < SheetDefault
     IDX_CODE_QUESTION = 1
     IDX_CODE_ANSWER   = 2
-    IDX_RANSWER  = 3
     NAME = 'questionnaire'
     INSTANCE = QuestionnaireCtrl.new
   end

@@ -7,8 +7,9 @@ class NumberCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::NumberSheet::IDX_CODE] == nil ||
-        row[MdSheet::NumberSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::NumberSheet::IDX_CODE] == nil || row[MdSheet::NumberSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::NumberSheet::IDX_VALUE] == nil || row[MdSheet::NumberSheet::IDX_VALUE].value == nil)
 
       numberModel = NounModel.new
       numberModel.setCode(row[MdSheet::NumberSheet::IDX_CODE])
@@ -22,7 +23,7 @@ class NumberCtrl
 
     for number in @numbers
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(number.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(number.getValue().value)
+      value = number.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::NumberSheet::NAME, number.to_s, params)

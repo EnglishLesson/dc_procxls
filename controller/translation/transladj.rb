@@ -9,8 +9,10 @@ class TranslADJCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslADJSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslADJSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslADJSheet::IDX_CODE_ADJECTIVE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslADJSheet::IDX_CODE] == nil || row[MdSheet::TranslADJSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslADJSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslADJSheet::IDX_CODE_TRANSLATION].value == nil) ||
+      (row[MdSheet::TranslADJSheet::IDX_CODE_ADJECTIVE] == nil || row[MdSheet::TranslADJSheet::IDX_CODE_ADJECTIVE].value == nil)
 
       translADJModel = TranslADJModel.new
       translADJModel.setCode(row[MdSheet::TranslADJSheet::IDX_CODE])

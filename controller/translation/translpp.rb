@@ -9,8 +9,13 @@ class TranslPPCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslPPSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslPPSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslPPSheet::IDX_CODE_PREPOSITION] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslPPSheet::IDX_CODE] == nil || row[MdSheet::TranslPPSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslPPSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslPPSheet::IDX_CODE_TRANSLATION].value == nil) ||
+      (row[MdSheet::TranslPPSheet::IDX_CODE_PREPOSITION] == nil || row[MdSheet::TranslPPSheet::IDX_CODE_PREPOSITION].value == nil)
+
+
+
 
       translPPModel = TranslPPModel.new
       translPPModel.setCode(row[MdSheet::TranslPPSheet::IDX_CODE])

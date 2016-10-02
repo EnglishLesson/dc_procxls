@@ -8,6 +8,6 @@ class TranslationModel < Entity
   end
 
   def to_s
-    return "(code, val, id_gender)"
+    return "(code, val)"
   end
 end

@@ -7,8 +7,9 @@ class PrepositionCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::PrepositionSheet::IDX_CODE] == nil ||
-        row[MdSheet::PrepositionSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::PrepositionSheet::IDX_CODE] == nil || row[MdSheet::PrepositionSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::PrepositionSheet::IDX_VALUE] == nil || row[MdSheet::PrepositionSheet::IDX_VALUE].value == nil)
 
       prepositionModel = PrepositionModel.new
       prepositionModel.setCode(row[MdSheet::PrepositionSheet::IDX_CODE])
@@ -22,7 +23,7 @@ class PrepositionCtrl
 
     for preposition in @prepositions
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(preposition.getCode().value)
-      val  = MdDb::DBUtil::INSTANCE.getStringFormat(preposition.getValue().value)
+      val  = preposition.getValue().value
       params = [code, val]
 
       MdDb::RunDB.persistData(MdSheet::PrepositionSheet::NAME, preposition.to_s, params)

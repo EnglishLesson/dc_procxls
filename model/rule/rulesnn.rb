@@ -10,6 +10,6 @@ class RulesNNModel < RulesDefault
   end
 
   def to_s
-    return "(code, id_rule, id_noun, id_exception)"
+    return "(code, id_rule, id_noun)"
   end
 end

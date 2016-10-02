@@ -10,6 +10,6 @@ class RulesVBModel < RulesDefault
   end
 
   def to_s
-    return "(code, id_rule, id_verb, id_exception)"
+    return "(code, id_rule, id_verb)"
   end
 end

@@ -14,12 +14,4 @@ class RulesDefault
   def setRuleId(ruleId)
     @ruleId = ruleId
   end
-
-  def getExceptionId
-    @exceptionId
-  end
-
-  def setExceptionId(exceptionId)
-    @exceptionId = exceptionId
-  end
 end

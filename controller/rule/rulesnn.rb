@@ -9,9 +9,10 @@ class RulesNNCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::RulesNNSheet::IDX_CODE] == nil ||
-        row[MdSheet::RulesNNSheet::IDX_CODE_RULE] == nil || row[MdSheet::RulesNNSheet::IDX_CODE_NOUN] == nil ||
-          row[MdSheet::RulesNNSheet::IDX_CODE_EXCEPTION] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::RulesNNSheet::IDX_CODE] == nil || row[MdSheet::RulesNNSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::RulesNNSheet::IDX_CODE_RULE] == nil || row[MdSheet::RulesNNSheet::IDX_CODE_RULE].value == nil) ||
+      (row[MdSheet::RulesNNSheet::IDX_CODE_NOUN] == nil || row[MdSheet::RulesNNSheet::IDX_CODE_NOUN].value == nil)
 
       rulesNNModel = RulesNNModel.new
       rulesNNModel.setCode(row[MdSheet::RulesNNSheet::IDX_CODE])
@@ -24,10 +25,6 @@ class RulesNNCtrl
         MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::RulesNNSheet::IDX_CODE_NOUN].value()))
       rulesNNModel.setNounId(nounId)
 
-      exceptionId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::ExceptionSheet::NAME,
-        MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::RulesNNSheet::IDX_CODE_EXCEPTION].value()))
-      rulesNNModel.setExceptionId(exceptionId)
-
       @rulesnns.push(rulesNNModel)
     end
 
@@ -39,7 +36,7 @@ class RulesNNCtrl
 
     for rulesnn in @rulesnns
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(rulesnn.getCode().value)
-      params = [code, rulesnn.getRuleId(), rulesnn.getNounId(), rulesnn.getExceptionId()]
+      params = [code, rulesnn.getRuleId(), rulesnn.getNounId()]
 
       MdDb::RunDB.persistData(MdSheet::RulesNNSheet::NAME, rulesnn.to_s, params)
     end
@@ -52,7 +49,6 @@ class RulesNNCtrl
       puts rulesnn.getCode().value
       puts rulesnn.getRuleId().value
       puts rulesnn.getNounId().value
-      puts rulesnn.getExceptionId().value
     end
   end
 end

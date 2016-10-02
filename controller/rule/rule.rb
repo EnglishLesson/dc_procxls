@@ -7,8 +7,10 @@ class RuleCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::RuleSheet::IDX_CODE] == nil ||
-        row[MdSheet::RuleSheet::IDX_VALUE] == nil || row[MdSheet::RuleSheet::IDX_NAME] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::RuleSheet::IDX_CODE] == nil || row[MdSheet::RuleSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::RuleSheet::IDX_VALUE] == nil || row[MdSheet::RuleSheet::IDX_VALUE].value == nil) ||
+      (row[MdSheet::RuleSheet::IDX_NAME] == nil || row[MdSheet::RuleSheet::IDX_NAME].value == nil)
 
       ruleModel = RuleModel.new
       ruleModel.setCode(row[MdSheet::RuleSheet::IDX_CODE])
@@ -23,8 +25,8 @@ class RuleCtrl
 
     for rule in @rules
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(rule.getCode().value)
-      name = MdDb::DBUtil::INSTANCE.getStringFormat(rule.getName().value)
-      val  = MdDb::DBUtil::INSTANCE.getStringFormat(rule.getValue().value)
+      name = rule.getName().value
+      val  = rule.getValue().value
       params = [code, name, val]
 
       MdDb::RunDB.persistData(MdSheet::RuleSheet::NAME, rule.to_s, params)

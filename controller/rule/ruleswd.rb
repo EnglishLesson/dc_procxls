@@ -9,9 +9,10 @@ class RulesWDCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::RulesWDSheet::IDX_CODE] == nil ||
-        row[MdSheet::RulesWDSheet::IDX_CODE_RULE] == nil || row[MdSheet::RulesWDSheet::IDX_CODE_WORD] == nil ||
-          row[MdSheet::RulesWDSheet::IDX_CODE_EXCEPTION] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::RulesWDSheet::IDX_CODE] == nil || row[MdSheet::RulesWDSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::RulesWDSheet::IDX_CODE_RULE] == nil || row[MdSheet::RulesWDSheet::IDX_CODE_RULE].value == nil) ||
+      (row[MdSheet::RulesWDSheet::IDX_CODE_WORD] == nil || row[MdSheet::RulesWDSheet::IDX_CODE_WORD].value == nil)
 
       rulesWDModel = RulesWDModel.new
       rulesWDModel.setCode(row[MdSheet::RulesWDSheet::IDX_CODE])
@@ -22,11 +23,8 @@ class RulesWDCtrl
 
       wordId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::WordSheet::NAME,
         MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::RulesWDSheet::IDX_CODE_WORD].value()))
-      rulesWDModel.setWordId(wordId)
 
-      exceptionId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::ExceptionSheet::NAME,
-        MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::RulesWDSheet::IDX_CODE_EXCEPTION].value()))
-      rulesWDModel.setExceptionId(exceptionId)
+      rulesWDModel.setWordId(wordId)
 
       @ruleswds.push(rulesWDModel)
     end
@@ -39,7 +37,7 @@ class RulesWDCtrl
 
     for ruleswd in @ruleswds
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(ruleswd.getCode().value)
-      params = [code, ruleswd.getRuleId(), ruleswd.getWordId(), ruleswd.getExceptionId()]
+      params = [code, ruleswd.getRuleId(), ruleswd.getWordId()]
 
       MdDb::RunDB.persistData(MdSheet::RulesWDSheet::NAME, ruleswd.to_s, params)
     end
@@ -52,7 +50,6 @@ class RulesWDCtrl
       puts ruleswd.getCode().value
       puts ruleswd.getRuleId()
       puts ruleswd.getWordId()
-      puts ruleswd.getExceptionId()
     end
   end
 end

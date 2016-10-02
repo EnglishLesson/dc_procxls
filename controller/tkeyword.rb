@@ -7,8 +7,9 @@ class TKeywordCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TKeywordSheet::IDX_CODE] == nil ||
-        row[MdSheet::TKeywordSheet::IDX_NAME] == nil
+      next if row.index_in_collection == 0 ||
+        (row[MdSheet::TKeywordSheet::IDX_CODE] == nil || row[MdSheet::TKeywordSheet::IDX_CODE].value == nil) ||
+        (row[MdSheet::TKeywordSheet::IDX_NAME] == nil || row[MdSheet::TKeywordSheet::IDX_NAME].value == nil)
 
       tkeywordModel = TKeywordModel.new
       tkeywordModel.setCode(row[MdSheet::TKeywordSheet::IDX_CODE])
@@ -22,7 +23,7 @@ class TKeywordCtrl
 
     for tkeyword in @tkeywords
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(tkeyword.getCode().value)
-      name  = MdDb::DBUtil::INSTANCE.getStringFormat(tkeyword.getName().value)
+      name  = tkeyword.getName().value
       params = [code, name]
 
       MdDb::RunDB.persistData(MdSheet::TKeywordSheet::NAME, tkeyword.to_s, params)

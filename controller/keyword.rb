@@ -9,8 +9,9 @@ class KeywordCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::KeywordSheet::IDX_CODE] == nil ||
-       row[MdSheet::KeywordSheet::IDX_CODE_TKEYWORD] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::KeywordSheet::IDX_CODE] == nil || row[MdSheet::KeywordSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::KeywordSheet::IDX_CODE_TKEYWORD] == nil || row[MdSheet::KeywordSheet::IDX_CODE_TKEYWORD].value == nil)
 
       keywordModel = KeywordModel.new
       keywordModel.setCode(row[MdSheet::KeywordSheet::IDX_CODE])
@@ -31,7 +32,7 @@ class KeywordCtrl
 
     for keyword in @keywords
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(keyword.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(keyword.getValue().value)
+      value = keyword.getValue().value
       params = [code, value, keyword.getTKeywordId()]
 
       MdDb::RunDB.persistData(MdSheet::KeywordSheet::NAME, keyword.to_s, params)

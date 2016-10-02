@@ -8,8 +8,9 @@ class AnswerCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::AnswerSheet::IDX_CODE] == nil ||
-        row[MdSheet::AnswerSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::AnswerSheet::IDX_CODE] == nil || row[MdSheet::AnswerSheet::IDX_CODE].value == nil)
+      (row[MdSheet::AnswerSheet::IDX_VALUE] == nil || row[MdSheet::AnswerSheet::IDX_VALUE].value == nil)
 
       answerModel = AnswerModel.new
       answerModel.setCode(row[MdSheet::AnswerSheet::IDX_CODE])
@@ -23,7 +24,7 @@ class AnswerCtrl
 
     for answer in @answers
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(answer.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(answer.getValue().value)
+      value = answer.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::AnswerSheet::NAME, answer.to_s, params)

@@ -1,5 +1,4 @@
 require_relative '../../model/translation/translation'
-require_relative '../../model/gender'
 
 class TranslationCtrl
   def initialize
@@ -10,17 +9,14 @@ class TranslationCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslationSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslationSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslationSheet::IDX_CODE] == nil || row[MdSheet::TranslationSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslationSheet::IDX_VALUE] == nil || row[MdSheet::TranslationSheet::IDX_VALUE].value == nil)
 
       translationModel = TranslationModel.new
       translationModel.setCode(row[MdSheet::TranslationSheet::IDX_CODE])
       translationModel.setValue(row[MdSheet::TranslationSheet::IDX_VALUE])
 
-      genderId = MdDb::DBUtil::INSTANCE.getIdDb(MdSheet::GenderSheet::NAME,
-        MdDb::DBUtil::INSTANCE.getCodeFormat(row[MdSheet::TranslationSheet::IDX_CODE_GENDER].value()))
-
-      translationModel.setGenderId(genderId)
       @translations.push(translationModel)
     end
 
@@ -31,9 +27,8 @@ class TranslationCtrl
     for translation in @translations
 
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(translation.getCode().value)
-      val  = MdDb::DBUtil::INSTANCE.getStringFormat(translation.getValue().value)
-      genderId = translation.getGenderId()
-      params = [code, val, genderId]
+      val  = translation.getValue().value
+      params = [code, val]
 
       MdDb::RunDB.connect()
       MdDb::RunDB.persistData(MdSheet::TranslationSheet::NAME, translation.to_s, params)
@@ -46,7 +41,6 @@ class TranslationCtrl
     for translation in @translations
       puts translation.getCode().value
       puts translation.getValue().value
-      puts translation.getGenderId()
     end
   end
 end

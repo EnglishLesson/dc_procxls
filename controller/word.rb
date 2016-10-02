@@ -7,8 +7,8 @@ class WordCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::WordSheet::IDX_CODE] == nil ||
-        row[MdSheet::ExceptionSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 || (row[MdSheet::WordSheet::IDX_CODE] == nil ||
+        row[MdSheet::WordSheet::IDX_CODE].value == nil)
 
       wordModel = WordModel.new
       wordModel.setCode(row[MdSheet::WordSheet::IDX_CODE])
@@ -22,7 +22,7 @@ class WordCtrl
 
     for word in @words
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(word.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(word.getValue().value)
+      value = word.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::WordSheet::NAME, word.to_s, params)

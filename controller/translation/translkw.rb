@@ -9,8 +9,10 @@ class TranslKWCtrl
     MdDb::RunDB.connect()
 
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::TranslKWSheet::IDX_CODE] == nil ||
-        row[MdSheet::TranslVBSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslKWSheet::IDX_CODE_KEYWORD] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::TranslKWSheet::IDX_CODE] == nil || row[MdSheet::TranslKWSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::TranslKWSheet::IDX_CODE_TRANSLATION] == nil || row[MdSheet::TranslKWSheet::IDX_CODE_TRANSLATION].value == nil) ||
+      (row[MdSheet::TranslKWSheet::IDX_CODE_KEYWORD] == nil || row[MdSheet::TranslKWSheet::IDX_CODE_KEYWORD].value == nil)
 
       translKWModel = TranslKWModel.new
       translKWModel.setCode(row[MdSheet::TranslKWSheet::IDX_CODE])

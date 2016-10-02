@@ -7,8 +7,9 @@ class QuestionCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::QuestionSheet::IDX_CODE] == nil ||
-        row[MdSheet::QuestionSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::QuestionSheet::IDX_CODE] == nil || row[MdSheet::QuestionSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::QuestionSheet::IDX_VALUE] == nil || row[MdSheet::QuestionSheet::IDX_VALUE].value == nil)
 
       questionModel = QuestionModel.new
       questionModel.setCode(row[MdSheet::QuestionSheet::IDX_CODE])
@@ -22,7 +23,7 @@ class QuestionCtrl
 
     for question in @questions
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(question.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(question.getValue().value)
+      value = question.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::QuestionSheet::NAME, question.to_s, params)

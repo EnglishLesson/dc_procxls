@@ -8,8 +8,9 @@ class AdjectiveCtrl
 
   def extractData(sheets)
     for row in sheets
-      next if row.index_in_collection == 0 || row[MdSheet::AdjectiveSheet::IDX_CODE] == nil ||
-        row[MdSheet::AdjectiveSheet::IDX_VALUE] == nil
+      next if row.index_in_collection == 0 ||
+      (row[MdSheet::AdjectiveSheet::IDX_CODE] == nil || row[MdSheet::AdjectiveSheet::IDX_CODE].value == nil) ||
+      (row[MdSheet::AdjectiveSheet::IDX_VALUE] == nil || row[MdSheet::AdjectiveSheet::IDX_VALUE].value == nil)
 
       adjectiveModel = AdjectiveModel.new
       adjectiveModel.setCode(row[MdSheet::AdjectiveSheet::IDX_CODE])
@@ -23,7 +24,7 @@ class AdjectiveCtrl
 
     for adjective in @adjectives
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(adjective.getCode().value)
-      value = MdDb::DBUtil::INSTANCE.getStringFormat(adjective.getValue().value)
+      value = adjective.getValue().value
       params = [code, value]
 
       MdDb::RunDB.persistData(MdSheet::AdjectiveSheet::NAME, adjective.to_s, params)
