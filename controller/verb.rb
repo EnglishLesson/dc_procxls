@@ -23,6 +23,7 @@ class VerbCtrl
 
     for verb in @verbs
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(verb.getCode().value)
+
       value = verb.getValue().value
       params = [code, value]
 

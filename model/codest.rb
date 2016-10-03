@@ -16,6 +16,6 @@ class CodesTModel
   end
 
   def to_s
-    return "(tname, code)"
+    return "(code, tname)"
   end
 end

@@ -25,7 +25,7 @@ class CodesTCtrl
     for codest in @codests
       tName = codest.getTName().value
       code = MdDb::DBUtil::INSTANCE.getCodeFormat(codest.getCode().value)
-      params = [tName, code]
+      params = [code, tName]
 
       MdDb::RunDB.persistData(MdSheet::CodesTSheet::NAME, codest.to_s, params)
     end

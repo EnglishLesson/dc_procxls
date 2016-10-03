@@ -22,7 +22,7 @@ mdSheet = Array[MdSheet::CodesTSheet, MdSheet::RuleSheet, MdSheet::TranslationSh
   MdSheet::TranslNBSheet, MdSheet::TranslADJSheet, MdSheet::TranslPronSheet
 ]
 
-validate the structure
+#validate the structure
 begin
   puts "Iniciando migracao de dados\n\n"
 

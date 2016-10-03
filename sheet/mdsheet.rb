@@ -43,8 +43,8 @@ module MdSheet
   end
 
   class CodesTSheet
-    IDX_TNAME = 0
-    IDX_CODE = 1
+    IDX_CODE = 0
+    IDX_TNAME = 1
     NAME = 'codest'
     INSTANCE = CodesTCtrl.new
   end
