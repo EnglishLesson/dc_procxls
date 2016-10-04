@@ -31,11 +31,7 @@ class DataBase
         params.concat(",")
       end
 
-      if idx == 1
-        params.concat("decode($1,'hex')")
-      else
         params.concat('$'.concat(idx.to_s))
-      end
     end
 
     params.concat(')')
