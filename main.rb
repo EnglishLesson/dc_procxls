@@ -37,6 +37,7 @@ begin
   end
 
   puts "\nMigracao realizada com sucesso!".green
-rescue
+rescue Exception => e
   puts 'Structure Invalid - sheet\'s incompatible with the template, please notify the administrator'.red
+  puts e
 end
