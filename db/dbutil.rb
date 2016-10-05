@@ -8,7 +8,7 @@ class DbUtil
   end
 
   def getIdDb(name, code)
-    return MdDb::RunDB.select(name, "code = decode(#{code}, 'hex')")
+    return MdDb::RunDB.select(name, 'id', "code = decode('#{code}', 'hex')")
   end
 
   def validateCode(code)
